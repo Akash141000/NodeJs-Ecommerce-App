@@ -1,0 +1,14 @@
+<%- include('../includes/head.ejs') %> 
+    <title><%= pageTitle%></title>
+  </head>
+  <style>
+    .error {
+      text-align: center;
+    }
+  </style>
+  <body>
+    
+    <%- include('../includes/navigation.ejs',{authenticated:false}) %> 
+    <h1 class="error">404! Page not Found</h1>
+  </body>
+</html>

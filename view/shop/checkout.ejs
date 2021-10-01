@@ -1,0 +1,44 @@
+<%- include('../includes/head.ejs') %> 
+    <link rel="stylesheet" href="/css/card.css" />
+    <title><%= pageTitle%></title>
+  </head>
+  <body>
+    
+    <%- include('../includes/navigation.ejs',{authenticated: authenticated})%>
+
+    <main>
+      <div class="cards">
+        <% prods.forEach(product => { %>
+        <div class="card-body">
+          <div class="card-title pad">
+            <h3><%= product.ProductId.title %></h3>
+          </div>
+          <div class="pad">
+            <p>Quantity: <%= product.quantity %></p>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <div style="text-align: center;">
+        <h2>Total: <%= totalSum %> </h2>
+      </div>
+      <div style="text-align:center">
+        <button  class="btn" id="orderBtn">Buy</button>
+        <script src="https://js.stripe.com/v3/"></script>
+        <script>
+          //  adding stripe API public key
+          var stripe = Stripe("pk_test_51JMRtpSGur93abb0eCOR8peztj8jbW0aL1DZgBZ0oHxNn4kHeQa1A1xdsd2wyyOJz3lmGmhO152wmD6cxsbpG6A300LShgcVOz");  
+          const checkoutBtn = document.getElementById("orderBtn");
+          checkoutBtn.addEventListener("click",function(){
+            stripe.redirectToCheckout({
+              sessionId:'<%= sessionId %>'
+            });
+          });
+      </script>
+      </div>
+
+
+      
+    </main>
+  </body>
+  </html>

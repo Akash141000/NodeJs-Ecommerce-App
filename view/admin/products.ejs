@@ -1,0 +1,47 @@
+<%- include('../includes/head.ejs') %> 
+    <link rel="stylesheet" href="/css/card.css" />
+    <title><%= pageTitle%></title>
+  </head>
+  <body>
+    
+      <%- include('../includes/navigation.ejs',{authenticated:authenticated})%>
+
+
+    <main>
+      <% if (prods.length > 0) { %>
+      <div class="cards">
+        <% prods.forEach(product => { %>
+        <div class="card-body">
+          <div class="card-image">
+            <img
+              alt="nothing"
+              class="img-prop"
+              src="/<%= product.imageUrl %>" 
+            />
+          </div>
+          <div class="card-title pad">
+            <h3><%= product.title %> </h3>
+          </div>
+          <div class="pad">
+            <p><%= product.description %></p>
+          </div>
+          <div class="pad">
+            <h3>Price: <b><%= product.price %></b> Rs</h3>
+          </div>
+          <div>
+            <a href="/admin/editProducts/<%= product._id%>"><button class="btn pad">Edit</button></a>
+            <form method="POST" action="/admin/deleteProduct">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+                <button class="btn pad">Delete</button>
+                <input type="hidden" name="productId" value="<%= product._id %>">
+            </form>
+          </div>
+        </div>
+        <% }) %>
+      </div>
+      <% } else {%>
+      <h1 class="err">No Products Found!</h1>
+      <% } %>
+    </main>
+  </body>
+</html>

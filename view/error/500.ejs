@@ -1,0 +1,18 @@
+<%- include('../includes/head.ejs') %> 
+    <title><%= pageTitle%></title>
+  </head>
+  <style>
+    .error {
+      text-align: center;
+    }
+  </style>
+  <body>
+    
+    <%- include('../includes/navigation.ejs',{authenticated:false}) %> 
+    <div class="error">
+        <h1>Some error has occured!</h1>
+        <h3>Sorry for the inconvinience!</h3>
+    </div>
+
+  </body>
+</html>

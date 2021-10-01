@@ -1,0 +1,73 @@
+<header>
+  <nav class="navbar">
+    <span class="nav-title">
+      <h1><a class="menu" href="/">Home</a></h1>
+    </span>
+    <span class="nav-menu">
+      <span>
+        <a
+          class="menu <%= path ==='/product-list' ? 'active':'' %>"
+          href="/shop/product-list"
+          >Products</a
+          ></span
+          >
+      <% if(authenticated) { %> 
+      <span>
+        <a
+          class="menu <%= path ==='admin/addProduct' ? 'active':'' %>"
+          href="/admin/addProduct"
+          >Add Product</a
+        ></span
+      >
+      <span>
+        <a class="menu <%= path ==='/cart' ? 'active':'' %>" href="/shop/cart"
+          >Cart</a
+        ></span
+      >
+      <span>
+        <a
+          class="menu <%= path ==='/orders' ? 'active':'' %>"
+          href="/shop/orders"
+          >Orders</a
+        ></span
+      >
+      <span>
+        <a
+          class="menu <%= path ==='admin/products' ? 'active':'' %>"
+          href="/admin/products"
+          >AdminProducts</a
+        ></span
+      >
+      <% } %> 
+
+      <% if(!authenticated) { %> 
+      <span>
+        <a
+          class="menu <%= path ==='authentication/login' ? 'active':'' %>"
+          href="/authentication/login"
+          >Login</a
+        ></span
+      >
+
+      <span>
+        <a
+          class="menu <%= path ==='authentication/register' ? 'active':'' %>"
+          href="/authentication/register"
+          >Register</a
+        ></span
+      >
+
+      <% } %> 
+
+      <% if(authenticated) { %> 
+        <span>
+          <a
+          class="menu <%= path ==='authentication/logout' ? 'active':'' %>"
+          href="/authentication/logout"
+          >logout</a
+        >
+        </span>
+        <% } %> 
+    </span>
+  </nav>
+</header>

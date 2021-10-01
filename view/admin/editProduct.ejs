@@ -1,0 +1,70 @@
+<%- include('../includes/head.ejs') %> 
+<link rel="stylesheet" href="/css/form.css" />
+<title><%= pageTitle%></title>
+</head>
+<body>
+
+  <%- include('../includes/navigation.ejs') %>
+
+
+
+<div id="bg"></div>
+<main>
+  <div id="content">
+    <div id="content-head">
+      <label>Edit Item</label>
+    </div>
+    <form id="content-body" method="POST" enctype="multipart/form-data" action="/admin/editProducts/product">
+      <!-- <label>Username</label> -->
+      <div>
+        <input
+          class="input-group"
+          name="title"
+          type="text"
+          placeholder="Title"
+          value="<%= product.title %>"
+        />
+      </div>
+      <div>
+        <input
+          class="input-group"
+          name="image"
+          type="file"
+        />
+      </div>
+      
+      <div>
+        <input
+          class="input-group"
+          name="price"
+          type="number"
+          placeholder="Price"
+          value= "<%= product.price %>"
+        />
+      </div>
+
+      <div>
+        <input
+          class="input-group"
+          name="description"
+          type="text"
+          maxlength="35"
+          placeholder="Description"
+          value= "<%= product.description %>"
+        />
+      </div>
+      
+      <div>
+        <!-- <input type="submit" name="submit"> -->
+    
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <button type="submit">Edit</button>
+        <input type="hidden" name="productId" value="<%= product._id%>">
+        
+        
+      </div>
+    </form>
+  </div>
+</main>
+</body>
+</html>

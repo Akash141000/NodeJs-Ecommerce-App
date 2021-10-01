@@ -1,0 +1,65 @@
+<%- include('../includes/head.ejs') %> 
+    <link rel="stylesheet" href="/css/form.css" />
+    <title><%= pageTitle%></title>
+  </head>
+  <body>
+    <%- include('../includes/navigation.ejs',{authenticated: authenticated}) %>
+
+    <div id="bg"></div>
+    <div class="backdrop"></div>
+    <main>
+      <div id="content">
+        <div id="content-head">
+          <label>Register</label>
+        </div>
+        <form id="content-body" method="POST" action="/authentication/postRegister" novalidate>
+          <div>
+            <input
+              class="input-group"
+              name="Fullname"
+              type="text"
+              placeholder="Fullname"
+            />
+          </div>
+          <!-- <label>Username</label> -->
+          <div>
+            <input
+              class="input-group"
+              name="Email"
+              type="email"
+              placeholder="email"
+            />
+          </div>
+          <!-- <label>Password</label> -->
+          <div>
+            <input
+              class="input-group"
+              name="Password"
+              type="password"
+              placeholder="Password"
+            />
+          </div>
+          <div>
+            <input
+              class="input-group"
+              name="ConfirmPassword"
+              type="password"
+              placeholder="Confirm Password"
+            />
+          </div>
+          <div>
+            <!-- <input type="submit" name="submit"> -->
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" >
+            <button type="submit" class="btn">Register</button>
+          </div>
+
+          <% if(errorMessage) { %> 
+            <div class="error">
+              <%= errorMessage %> 
+            </div>
+          <% } %> 
+        </form>
+      </div>
+    </main>
+  </body>
+</html>

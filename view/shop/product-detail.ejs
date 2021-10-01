@@ -1,0 +1,38 @@
+<%- include('../includes/head.ejs') %> 
+    <link rel="stylesheet" href="/css/card.css" />
+    <title><%= pageTitle%></title>
+  </head>
+  <body>
+    
+    <%- include('../includes/navigation.ejs',{authenticated: authenticated})%>
+
+      <main>
+
+        <div class="cards">
+          <div class="card-body">
+            <div class="card-image">
+              <img
+                alt="nothing"
+                class="img-prop"
+                src="/<%= product.imageUrl %>" 
+              />
+            </div>
+            <div class="card-title pad">
+              <h3><%= product.title %> </h3>
+            </div>
+            <div class="pad">
+              <p><%= product.description %></p>
+            </div>
+            <div class="pad">
+              <h3>Price: <b><%= product.price %></b> Rs</h3>
+            </div>
+            <div>
+              <a href="/product/<%= product.id %>"><button class="btn pad">Details</button></a>
+                 <%- include('../includes/add-to-cart.ejs',{authenticated:authenticated}) %>
+            </div>
+          </div>
+        </div>
+       
+      </main>
+  </body>
+  </html>
