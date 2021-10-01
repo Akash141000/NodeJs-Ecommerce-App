@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const errorControl = require('../Control/error');
+const errorControl = require('../control/error');
 
 Router.use('/404',errorControl.get404ErrorPage);
 

@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router();
-const adminProduct = require('../Control/admin');
+const adminProduct = require('../control/admin');
 const isAuth = require('../middleware/auth');
 
 Router.post("/admin/addProduct",adminProduct.postAddProduct);

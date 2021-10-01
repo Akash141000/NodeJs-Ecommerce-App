@@ -1,6 +1,6 @@
 const express = require('express');
 const Router = express.Router(); 
-const shopProduct = require('../Control/shop');
+const shopProduct = require('../control/shop');
 const isAuth = require('../middleware/auth');
 
 Router.post("/shop/deleteCartProduct",shopProduct.postDeleteCartProduct);
