@@ -1,6 +1,4 @@
-const Product = require("../Model/Product");
-const User = require("../Model/User");
-const mongodb = require("mongodb");
+const Product = require("../model/Product");
 const fileHelper = require("../util/file");
 
 exports.postAddProduct = (req, res, next) => {
