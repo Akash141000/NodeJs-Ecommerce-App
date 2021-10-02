@@ -70,8 +70,8 @@ exports.postRegister = (req, res, next) => {
       return transport.sendMail({
         to: "220877ffcd-548160@inbox.mailtrap.io",
         from: "demo@demoMail.com",
-        subject: "signup succed",
-        html: "<h1>Acount created Successfully!</h1>",
+        subject: "signup succeed",
+        html: "<h1>Account created Successfully!</h1>",
       });
     })
     .catch((err) => console.log(err));

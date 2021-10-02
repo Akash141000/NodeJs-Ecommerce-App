@@ -1,0 +1,8 @@
+{
+    "env":{
+        "STRIPE_KEY":"sk_test_51JMRtpSGur93abb0CBu2LsAmRkRDtbBr3jn86rbA8W71slCWsPGZvkyvcKDopz1F00333Xb9AlqX9twY5DTto48r00ZTwgCRbK",
+        "MONGO_USER":"Akash2000",
+        "MONGO_PASSWORD":"Akash2000", 
+        "MONGO_CONNECTION": "mongodb+srv://Akash2000:Akash2000@cluster1.qcajx.mongodb.net/onlineShopping?retryWrites=true&w=majority"
+    }
+}

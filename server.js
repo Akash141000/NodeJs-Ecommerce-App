@@ -4,11 +4,15 @@ const shopRoutes = require("./routes/shop");
 const authenticationRoutes = require("./routes/authentication");
 const errorRoutes = require("./routes/error");
 
+//modal
+const User = require("./model/User");
+
 const mongoose = require("mongoose");
 const express = require("express");
 const app = express();
 const path = require("path");
 
+const http = require("http");
 const session = require("express-session");
 const mongoDbStore = require("connect-mongodb-session")(session);
 const csrf = require("csurf");
@@ -35,6 +39,7 @@ const fileFilter = (req, file, cb) => {
   }
 };
 
+
 //file storage for multer
 const fileStorage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -52,10 +57,14 @@ const store = new mongoDbStore({
   uri: connectionString,
   collection: "sessions",
 });
+store.on('error', function(error) {
+  console.log(error);
+});
 
 //helmet and compression
 app.use(helmet());
 app.use(compression());
+
 app.use(express.urlencoded({ extended: false }));
 
 //multer setup
@@ -78,6 +87,8 @@ app.use(
     store: store,
   })
 );
+//extract csrf middleware
+const csrfProtection = csrf();
 
 //setting template engine
 app.set("view engine", "ejs");
@@ -100,11 +111,8 @@ app.use((req, res, next) => {
     next();
   }
 });
-
-//csrf protection
-const csrfProtection = csrf();
+//using csrf middleware
 app.use(csrfProtection);
-
 //flash for errors
 app.use(flash());
 
@@ -116,11 +124,22 @@ app.use((req, res, next) => {
 });
 
 //middlewares
-
 app.use(authenticationRoutes);
 app.use(adminRoutes);
 app.use(shopRoutes);
 app.use(errorRoutes);
+
+//error handling middleware
+
+app.use((err, req, res, next) => {
+  const errCode = err.statusCode || 500;
+  const errMessage = err.message || 500;
+  res.status(errCode).render("error/500", {
+    pageTitle: "Error occured!",
+    path: "authenticated/login",
+  });
+});
+
 
 //mongoose connection
 mongoose
@@ -134,16 +153,3 @@ mongoose
   .catch((err) => {
     console.log(err);
   });
-
-//error handling middleware
-
-app.use((err, req, res, next) => {
-  const errCode = err.statusCode;
-  const errMessage = err.message || 500;
-  res
-    .status(errCode)
-    .render("error/500", {
-      pageTitle: "Error occured!",
-      path: "authenticated/login",
-    });
-});

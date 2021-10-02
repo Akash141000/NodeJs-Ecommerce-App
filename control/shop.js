@@ -95,7 +95,6 @@ exports.postAddToCart = (req, res, next) => {
     })
     .then((result) => {
       res.redirect("/shop/cart");
-      console.log(result);
     })
     .catch((err) => {
       const error = new Error(err);
